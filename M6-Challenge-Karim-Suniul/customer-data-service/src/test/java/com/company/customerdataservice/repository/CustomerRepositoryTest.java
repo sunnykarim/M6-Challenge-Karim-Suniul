@@ -74,142 +74,142 @@ public class CustomerRepositoryTest {
 
         assertEquals(2, customerList.size());
     }
+
+    @Test
+    public void addCustomer() {
+        //Arrange...
+        Customer customer = new Customer();
+        customer.setF_name("Joe");
+        customer.setL_name("Smith");
+        customer.setPhone("111-222-3456");
+        customer.setCompany("BigCo");
+        customer.setAddress1("Address1");
+        customer.setAddress2("Address2");
+        customer.setCity("Los Angeles");
+        customer.setState("California");
+        customer.setPostal_code("12345");
+        customer.setCountry("United States of America");
+
+        //Act...
+        customer = customerRepo.save(customer);
+
+        //Assert...
+        Optional<Customer> customer1 = customerRepo.findById(customer.getCustomer_id());
+
+        assertEquals(customer1.get(), customer);
+    }
+
+    @Test
+    public void getAllCustomers() {
+        //Arrange...
+
+        //Act...
+        Customer customer = new Customer();
+        customer.setF_name("Joe");
+        customer.setL_name("Smith");
+        customer.setPhone("111-222-3456");
+        customer.setCompany("BigCo");
+        customer.setAddress1("Address1");
+        customer.setAddress2("Address2");
+        customer.setCity("Los Angeles");
+        customer.setState("California");
+        customer.setPostal_code("12345");
+        customer.setCountry("United States of America");
+
+        customerRepo.save(customer);
+
+        Customer customer2 = new Customer();
+        customer2.setF_name("Bob");
+        customer2.setL_name("Marley");
+        customer2.setPhone("222-333-4567");
+        customer2.setCompany("Independent");
+        customer2.setAddress1("Address1");
+        customer2.setAddress2("Address2");
+        customer2.setCity("Los Angeles");
+        customer2.setState("California");
+        customer2.setPostal_code("12345");
+        customer2.setCountry("United States of America");
+
+        customerRepo.save(customer2);
+
+        List<Customer> customerList = customerRepo.findAll();
+
+        //Assert...
+        assertEquals(2, customerList.size());
+    }
+
+    @Test
+    public void updateCustomer() {
+        //Arrange...
+        Customer customer = new Customer();
+        customer.setF_name("Joe");
+        customer.setL_name("Smith");
+        customer.setPhone("111-222-3456");
+        customer.setCompany("BigCo");
+        customer.setAddress1("Address1");
+        customer.setAddress2("Address2");
+        customer.setCity("Los Angeles");
+        customer.setState("California");
+        customer.setPostal_code("12345");
+        customer.setCountry("United States of America");
+
+        customerRepo.save(customer);
+
+        //Act...
+        customer.setF_name("UPDATED");
+
+        customerRepo.save(customer);
+
+        //Assert...
+        Optional<Customer> customer1 = customerRepo.findById(customer.getCustomer_id());
+
+        assertEquals(customer1.get(), customer);
+    }
+
+    @Test
+    public void deleteCustomer() {
+        //Arrange...
+        Customer customer = new Customer();
+        customer.setF_name("Joe");
+        customer.setL_name("Smith");
+        customer.setPhone("111-222-3456");
+        customer.setCompany("BigCo");
+        customer.setAddress1("Address1");
+        customer.setAddress2("Address2");
+        customer.setCity("Los Angeles");
+        customer.setState("California");
+        customer.setPostal_code("12345");
+        customer.setCountry("United States of America");
+
+        customerRepo.save(customer);
+
+        //Act...
+        customerRepo.deleteById(customer.getCustomer_id());
+
+        //Assert...
+        Optional<Customer> customer1 = customerRepo.findById(customer.getCustomer_id());
+        assertFalse(customer1.isPresent());
+    }
+
+    @org.junit.Test
+    public void findCustomerById() {
+        Customer customer = new Customer();
+        customer.setF_name("Joe");
+        customer.setL_name("Smith");
+        customer.setPhone("111-222-3456");
+        customer.setCompany("BigCo");
+        customer.setAddress1("Address1");
+        customer.setAddress2("Address2");
+        customer.setCity("Los Angeles");
+        customer.setState("California");
+        customer.setPostal_code("12345");
+        customer.setCountry("United States of America");
+
+        customerRepo.save(customer);
+
+        //Assert...
+        Optional<Customer> customer1 = customerRepo.findById(customer.getCustomer_id());
+
+        assertEquals(customer1.get(), customer);
+    }
 }
-
-//    @Test
-//    public void addCustomer() {
-//        //Arrange...
-//        Customer customer = new Customer();
-//        customer.setF_name("Joe");
-//        customer.setL_name("Smith");
-//        customer.setPhone("111-222-3456");
-//        customer.setCompany("BigCo");
-//        customer.setAddress1("Address1");
-//        customer.setAddress2("Address2");
-//        customer.setCity("Los Angeles");
-//        customer.setState("California");
-//        customer.setPostal_code("12345");
-//        customer.setCountry("United States of America");
-//
-//        //Act...
-//        customer = customerRepo.save(customer);
-//
-//        //Assert...
-//        Optional<Customer> customer1 = customerRepo.findById(customer.getCustomer_id());
-//
-//        assertEquals(customer1.get(), customer);
-//    }
-//
-//    @Test
-//    public void getAllCustomers() {
-//        //Arrange...
-//
-//        //Act...
-//        Customer customer = new Customer();
-//        customer.setF_name("Joe");
-//        customer.setL_name("Smith");
-//        customer.setPhone("111-222-3456");
-//        customer.setCompany("BigCo");
-//        customer.setAddress1("Address1");
-//        customer.setAddress2("Address2");
-//        customer.setCity("Los Angeles");
-//        customer.setState("California");
-//        customer.setPostal_code("12345");
-//        customer.setCountry("United States of America");
-//
-//        customerRepo.save(customer);
-//
-//        Customer customer2 = new Customer();
-//        customer2.setF_name("Bob");
-//        customer2.setL_name("Marley");
-//        customer2.setPhone("222-333-4567");
-//        customer2.setCompany("Independent");
-//        customer2.setAddress1("Address1");
-//        customer2.setAddress2("Address2");
-//        customer2.setCity("Los Angeles");
-//        customer2.setState("California");
-//        customer2.setPostal_code("12345");
-//        customer2.setCountry("United States of America");
-//
-//        customerRepo.save(customer2);
-//
-//        List<Customer> customerList = customerRepo.findAll();
-//
-//        //Assert...
-//        assertEquals(2, customerList.size());
-//    }
-//
-//    @Test
-//    public void updateCustomer() {
-//        //Arrange...
-//        Customer customer = new Customer();
-//        customer.setF_name("Joe");
-//        customer.setL_name("Smith");
-//        customer.setPhone("111-222-3456");
-//        customer.setCompany("BigCo");
-//        customer.setAddress1("Address1");
-//        customer.setAddress2("Address2");
-//        customer.setCity("Los Angeles");
-//        customer.setState("California");
-//        customer.setPostal_code("12345");
-//        customer.setCountry("United States of America");
-//
-//        customerRepo.save(customer);
-//
-//        //Act...
-//        customer.setF_name("UPDATED");
-//
-//        customerRepo.save(customer);
-//
-//        //Assert...
-//        Optional<Customer> customer1 = customerRepo.findById(customer.getCustomer_id());
-//
-//        assertEquals(customer1.get(), customer);
-//    }
-//
-//    @Test
-//    public void deleteCustomer() {
-//        //Arrange...
-//        Customer customer = new Customer();
-//        customer.setF_name("Joe");
-//        customer.setL_name("Smith");
-//        customer.setPhone("111-222-3456");
-//        customer.setCompany("BigCo");
-//        customer.setAddress1("Address1");
-//        customer.setAddress2("Address2");
-//        customer.setCity("Los Angeles");
-//        customer.setState("California");
-//        customer.setPostal_code("12345");
-//        customer.setCountry("United States of America");
-//
-//        customerRepo.save(customer);
-//
-//        //Act...
-//        customerRepo.deleteById(customer.getCustomer_id());
-//
-//        //Assert...
-//        Optional<Customer> customer1 = customerRepo.findById(customer.getCustomer_id());
-//        assertFalse(customer1.isPresent());
-//    }
-//    @org.junit.Test
-//    public void findCustomerById() {
-//        Customer customer = new Customer();
-//        customer.setF_name("Joe");
-//        customer.setL_name("Smith");
-//        customer.setPhone("111-222-3456");
-//        customer.setCompany("BigCo");
-//        customer.setAddress1("Address1");
-//        customer.setAddress2("Address2");
-//        customer.setCity("Los Angeles");
-//        customer.setState("California");
-//        customer.setPostal_code("12345");
-//        customer.setCountry("United States of America");
-//
-//        customerRepo.save(customer);
-//
-//        //Assert...
-//        Optional<Customer> customer1 = customerRepo.findById(customer.getCustomer_id());
-//
-//        assertEquals(customer1.get(), customer);
-//    }
-
